@@ -19,7 +19,7 @@
         size = self.bounds.size;
         
         [self addTitleLabel];
-        [self addTextFieldLabel];
+        [self addTextView];
         [self addYearLabel];
         [self addCompanyLabel];
         [self addImageView];
@@ -38,7 +38,7 @@
     [self.contentView addSubview:_titleLabel];
 }
 
-- (void)addTextFieldLabel
+- (void)addTextView
 {
     _textView = [[UITextView alloc] initWithFrame:CGRectMake(20, 40, size.width-70, 45)];
     _textView.font = [UIFont systemFontOfSize:10];
