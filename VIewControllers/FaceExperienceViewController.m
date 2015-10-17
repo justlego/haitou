@@ -17,7 +17,13 @@
 @implementation FaceExperienceViewController
 {
     NSMutableArray *_arrayOfTextView;
-    FaceTableViewCell *cell;
+    NSMutableArray *_arrayOfTitle;
+    NSMutableArray *_arrayOfYear;
+    NSMutableArray *_arrayOfName;
+    NSMutableArray *_arrayOfCount;
+    NSMutableArray *_arrayOfUp;
+    NSMutableArray *_arrayOfImages;
+    
     UITableView *_faceTableView;
 }
 
@@ -26,6 +32,12 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     _arrayOfTextView = [NSMutableArray new];
+    _arrayOfTitle = [NSMutableArray new];
+    _arrayOfYear = [NSMutableArray new];
+    _arrayOfName = [NSMutableArray new];
+    _arrayOfCount = [NSMutableArray new];
+    _arrayOfUp = [NSMutableArray new];
+    _arrayOfImages = [NSMutableArray new];
     
     [self load];
     [self addTableView];
@@ -50,10 +62,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    FaceTableViewCell *cell;
     cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     if (_arrayOfTextView.count) {
         cell.textView.text = _arrayOfTextView[indexPath.row];
+        cell.titleLabel.text = _arrayOfTitle[indexPath.row];
+        cell.yearLabel.text = _arrayOfYear[indexPath.row];
+        cell.companyLabel.text = _arrayOfName[indexPath.row];
+        cell.readCountLabel.text = [_arrayOfCount[indexPath.row] stringValue];
+        cell.goodCountLabel.text = [_arrayOfUp[indexPath.row] stringValue];
     }
     
     return cell;
@@ -81,9 +99,23 @@
         NSLog(@"array:%@",arrayOfAllContent);
         
         for (NSDictionary *dic1 in arrayOfAllContent) {
-            NSString *str = [dic1 objectForKey:@"infoLite"];
+            [_arrayOfTextView addObject:[dic1 objectForKey:@"infoLite"]];
+            [_arrayOfTitle addObject:[dic1 objectForKey:@"title"]];
+            [_arrayOfYear addObject:[dic1 objectForKey:@"year"]];
+            [_arrayOfCount addObject:[dic1 objectForKey:@"count"]];
+            [_arrayOfUp addObject:[dic1 objectForKey:@"up"]];
+            [_arrayOfImages addObject:[dic1 objectForKey:@"image"]];
             
-            [_arrayOfTextView addObject:str];
+            
+            NSArray *arr = [dic1 objectForKey:@"companys"];
+            NSDictionary *dic2= [arr lastObject];
+            NSString *str = [dic2 objectForKey:@"name"];
+            if (str) {
+                [_arrayOfName addObject:str];
+            }else{
+                str = @"无";
+                [_arrayOfName addObject:str];
+            }
         }
         [_faceTableView reloadData];
 
