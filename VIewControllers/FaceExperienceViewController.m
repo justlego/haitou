@@ -72,6 +72,8 @@
         cell.companyLabel.text = _arrayOfName[indexPath.row];
         cell.readCountLabel.text = [_arrayOfCount[indexPath.row] stringValue];
         cell.goodCountLabel.text = [_arrayOfUp[indexPath.row] stringValue];
+        cell.imgView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_arrayOfImages[indexPath.row]]]];
+                                
     }
     
     return cell;
@@ -98,24 +100,30 @@
         NSArray *arrayOfAllContent = [dic objectForKey:@"info"];
         NSLog(@"array:%@",arrayOfAllContent);
         
-        for (NSDictionary *dic1 in arrayOfAllContent) {
-            [_arrayOfTextView addObject:[dic1 objectForKey:@"infoLite"]];
-            [_arrayOfTitle addObject:[dic1 objectForKey:@"title"]];
-            [_arrayOfYear addObject:[dic1 objectForKey:@"year"]];
-            [_arrayOfCount addObject:[dic1 objectForKey:@"count"]];
-            [_arrayOfUp addObject:[dic1 objectForKey:@"up"]];
-            [_arrayOfImages addObject:[dic1 objectForKey:@"image"]];
+        for (NSDictionary *info in arrayOfAllContent) {
+            [_arrayOfTextView addObject:[info objectForKey:@"infoLite"]];
+            [_arrayOfTitle addObject:[info objectForKey:@"title"]];
+            [_arrayOfYear addObject:[info objectForKey:@"year"]];
+            [_arrayOfCount addObject:[info objectForKey:@"count"]];
+            [_arrayOfUp addObject:[info objectForKey:@"up"]];
+            [_arrayOfImages addObject:[info objectForKey:@"image"]];
             
-            
-            NSArray *arr = [dic1 objectForKey:@"companys"];
-            NSDictionary *dic2= [arr lastObject];
-            NSString *str = [dic2 objectForKey:@"name"];
-            if (str) {
-                [_arrayOfName addObject:str];
+            NSArray *arr = [info objectForKey:@"companys"];
+            NSString *name = @"";
+            if (arr.count == 0){
+                name = @"无";
+            }else if (arr.count == 1){
+                NSDictionary *dicOfName = [arr firstObject];
+                name = [dicOfName objectForKey:@"name"];
             }else{
-                str = @"无";
-                [_arrayOfName addObject:str];
+                NSMutableArray *arrOfNames = [NSMutableArray new];
+                for (NSDictionary *dicOfName in arr) {
+                    NSString *str = [NSString stringWithFormat:[dicOfName objectForKey:@"name"],@"  "];
+                    [arrOfNames addObject:str];
+                }
+                name = [arrOfNames componentsJoinedByString:@" "];
             }
+            [_arrayOfName addObject:name];
         }
         [_faceTableView reloadData];
 
