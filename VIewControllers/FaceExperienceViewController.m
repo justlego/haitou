@@ -73,6 +73,8 @@
         cell.readCountLabel.text = [_arrayOfCount[indexPath.row] stringValue];
         cell.goodCountLabel.text = [_arrayOfUp[indexPath.row] stringValue];
         cell.imgView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_arrayOfImages[indexPath.row]]]];
+        cell.readImageView.image = [UIImage imageNamed:@"read"];
+        cell.goodImageView.image = [UIImage imageNamed:@"good"];
                                 
     }
     
