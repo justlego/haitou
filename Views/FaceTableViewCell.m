@@ -43,6 +43,7 @@
     _textView = [[UITextView alloc] initWithFrame:CGRectMake(20, 40, size.width-70, 45)];
     _textView.font = [UIFont systemFontOfSize:10];
     _textView.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.6];
+    _textView.scrollEnabled = NO;
     [self.contentView addSubview:_textView];
 
 }

@@ -57,7 +57,7 @@
 #pragma mark UITableViewDataSourse
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    return 30;
+    return _arrayOfTitle.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,15 +93,11 @@
 
 - (void)load
 {
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *dic = @{@"foo":@"bar"};
-    [manager POST:@"http://mobile.haitou.cc/mjfx?type=0&page=1&auth=ODAS-JgCGzGQCXEYTvjO7vIm79ZyAofFwuT54PcXpyY.&ver=1.0&token=a1e194829c" parameters:dic success:^(AFHTTPRequestOperation *operation, NSDictionary *dic) {
-        
-        NSLog(@"JSON:%@",dic);
-        
+    [manager POST:@"http://mobile.haitou.cc/mjfx?type=0&page=1&auth=ODAS-JgCGzGQCXEYTvjO7vIm79ZyAofFwuT54PcXpyY.&ver=1.0&token" parameters:dic success:^(AFHTTPRequestOperation *operation, NSDictionary *dic) {
         NSArray *arrayOfAllContent = [dic objectForKey:@"info"];
-        NSLog(@"array:%@",arrayOfAllContent);
-        
         for (NSDictionary *info in arrayOfAllContent) {
             [_arrayOfTextView addObject:[info objectForKey:@"infoLite"]];
             [_arrayOfTitle addObject:[info objectForKey:@"title"]];
