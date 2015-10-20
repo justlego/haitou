@@ -9,8 +9,10 @@
 #import "FaceExperienceViewController.h"
 #import "FaceTableViewCell.h"
 #import "AFNetworking.h"
+#import "SSARefreshControl.h"
 
-@interface FaceExperienceViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface FaceExperienceViewController ()<UITableViewDataSource,UITableViewDelegate,SSARefreshControlDelegate>
+@property (nonatomic,strong)SSARefreshControl *refreshControl;
 
 @end
 
@@ -30,8 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     countI = 1;
-    [self load];
     
     self.view.backgroundColor = [UIColor whiteColor];
     _arrayOfTextView = [NSMutableArray new];
@@ -43,11 +45,14 @@
     _arrayOfImages = [NSMutableArray new];
     
     [self addTableView];
+    [self addRefresh];
 }
 
 - (void)addTableView
 {
-    _faceTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    CGRect frame = self.view.bounds;
+    frame.origin.y = 64;
+    _faceTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     
     [self.view addSubview:_faceTableView];
 
@@ -142,6 +147,39 @@
     }
     
 }
+
+
+
+
+#pragma mark SSARefreshControl
+- (void)addRefresh{
+    self.refreshControl = [[SSARefreshControl alloc] initWithScrollView:_faceTableView andRefreshViewLayerType:SSARefreshViewLayerTypeOnScrollView];
+    self.refreshControl.delegate = self;
+    self.view.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.refreshControl beginRefreshing];
+}
+
+- (void)beganRefreshing{
+    [self loadDataSource];
+}
+
+- (void)loadDataSource{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
+        
+        [self load];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_faceTableView reloadData];
+            [self.refreshControl endRefreshing];
+        });
+    });
+}
+
+
 
 
 - (void)didReceiveMemoryWarning {

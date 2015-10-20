@@ -26,6 +26,10 @@
 		1811DFD51BD125C40028C442 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1811DFC41BD125C40028C442 /* UIWebView+AFNetworking.m */; };
 		1811DFDB1BD254510028C442 /* read.png in Resources */ = {isa = PBXBuildFile; fileRef = 1811DFD91BD254510028C442 /* read.png */; };
 		1811DFDC1BD254510028C442 /* good.png in Resources */ = {isa = PBXBuildFile; fileRef = 1811DFDA1BD254510028C442 /* good.png */; };
+		18A0FF291BD633C500910C5C /* Ressources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18A0FF221BD633C500910C5C /* Ressources.bundle */; };
+		18A0FF2A1BD633C500910C5C /* SSACircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A0FF241BD633C500910C5C /* SSACircleView.m */; };
+		18A0FF2B1BD633C500910C5C /* SSAPullToRefreshAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A0FF261BD633C500910C5C /* SSAPullToRefreshAnimator.m */; };
+		18A0FF2C1BD633C500910C5C /* SSARefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A0FF281BD633C500910C5C /* SSARefreshControl.m */; };
 		18D220CA1BCBD051007EF9E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D220C91BCBD051007EF9E6 /* main.m */; };
 		18D220CD1BCBD051007EF9E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D220CC1BCBD051007EF9E6 /* AppDelegate.m */; };
 		18D220D01BCBD051007EF9E6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D220CF1BCBD051007EF9E6 /* ViewController.m */; };
@@ -74,6 +78,13 @@
 		1811DFC41BD125C40028C442 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		1811DFD91BD254510028C442 /* read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = read.png; sourceTree = "<group>"; };
 		1811DFDA1BD254510028C442 /* good.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = good.png; sourceTree = "<group>"; };
+		18A0FF221BD633C500910C5C /* Ressources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Ressources.bundle; sourceTree = "<group>"; };
+		18A0FF231BD633C500910C5C /* SSACircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSACircleView.h; sourceTree = "<group>"; };
+		18A0FF241BD633C500910C5C /* SSACircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSACircleView.m; sourceTree = "<group>"; };
+		18A0FF251BD633C500910C5C /* SSAPullToRefreshAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSAPullToRefreshAnimator.h; sourceTree = "<group>"; };
+		18A0FF261BD633C500910C5C /* SSAPullToRefreshAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSAPullToRefreshAnimator.m; sourceTree = "<group>"; };
+		18A0FF271BD633C500910C5C /* SSARefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSARefreshControl.h; sourceTree = "<group>"; };
+		18A0FF281BD633C500910C5C /* SSARefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSARefreshControl.m; sourceTree = "<group>"; };
 		18D220C51BCBD051007EF9E6 /* haitou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = haitou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D220C91BCBD051007EF9E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18D220CB1BCBD051007EF9E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,6 +114,7 @@
 		1811DF9E1BD125B80028C442 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				18A0FF211BD633C500910C5C /* SSAPullToRefresh */,
 				1811DF9F1BD125C40028C442 /* AFNetworking */,
 				1811DFB31BD125C40028C442 /* UIKit+AFNetworking */,
 			);
@@ -166,6 +178,20 @@
 				1811DFDA1BD254510028C442 /* good.png */,
 			);
 			path = icons;
+			sourceTree = "<group>";
+		};
+		18A0FF211BD633C500910C5C /* SSAPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				18A0FF221BD633C500910C5C /* Ressources.bundle */,
+				18A0FF231BD633C500910C5C /* SSACircleView.h */,
+				18A0FF241BD633C500910C5C /* SSACircleView.m */,
+				18A0FF251BD633C500910C5C /* SSAPullToRefreshAnimator.h */,
+				18A0FF261BD633C500910C5C /* SSAPullToRefreshAnimator.m */,
+				18A0FF271BD633C500910C5C /* SSARefreshControl.h */,
+				18A0FF281BD633C500910C5C /* SSARefreshControl.m */,
+			);
+			path = SSAPullToRefresh;
 			sourceTree = "<group>";
 		};
 		18D220BC1BCBD051007EF9E6 = {
@@ -287,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1811DFDC1BD254510028C442 /* good.png in Resources */,
+				18A0FF291BD633C500910C5C /* Ressources.bundle in Resources */,
 				18D220D81BCBD051007EF9E6 /* LaunchScreen.storyboard in Resources */,
 				18D220D51BCBD051007EF9E6 /* Assets.xcassets in Resources */,
 				1811DFDB1BD254510028C442 /* read.png in Resources */,
@@ -306,8 +333,11 @@
 				1811DFC81BD125C40028C442 /* AFNetworkReachabilityManager.m in Sources */,
 				1811DFD31BD125C40028C442 /* UIProgressView+AFNetworking.m in Sources */,
 				1811DFCD1BD125C40028C442 /* AFURLSessionManager.m in Sources */,
+				18A0FF2B1BD633C500910C5C /* SSAPullToRefreshAnimator.m in Sources */,
+				18A0FF2A1BD633C500910C5C /* SSACircleView.m in Sources */,
 				1811DFCB1BD125C40028C442 /* AFURLRequestSerialization.m in Sources */,
 				18D220D01BCBD051007EF9E6 /* ViewController.m in Sources */,
+				18A0FF2C1BD633C500910C5C /* SSARefreshControl.m in Sources */,
 				1811DFD41BD125C40028C442 /* UIRefreshControl+AFNetworking.m in Sources */,
 				1811DFCC1BD125C40028C442 /* AFURLResponseSerialization.m in Sources */,
 				18D220E91BCBD7C6007EF9E6 /* FaceTableViewCell.m in Sources */,
