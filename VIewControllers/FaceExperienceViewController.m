@@ -25,10 +25,13 @@
     NSMutableArray *_arrayOfImages;
     
     UITableView *_faceTableView;
+    int countI;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    countI = 1;
+    [self load];
     
     self.view.backgroundColor = [UIColor whiteColor];
     _arrayOfTextView = [NSMutableArray new];
@@ -39,13 +42,13 @@
     _arrayOfUp = [NSMutableArray new];
     _arrayOfImages = [NSMutableArray new];
     
-    [self load];
     [self addTableView];
 }
 
 - (void)addTableView
 {
     _faceTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    
     [self.view addSubview:_faceTableView];
 
     _faceTableView.dataSource = self;
@@ -93,10 +96,11 @@
 
 - (void)load
 {
-    
+    NSString *count = [NSString stringWithFormat:@"%d",countI];
+    NSString *url = [NSString stringWithFormat:@"http://mobile.haitou.cc/mjfx?type=0&page=%@&auth=ODAS-JgCGzGQCXEYTvjO7vIm79ZyAofFwuT54PcXpyY.&ver=1.0&token",count];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *dic = @{@"foo":@"bar"};
-    [manager POST:@"http://mobile.haitou.cc/mjfx?type=0&page=1&auth=ODAS-JgCGzGQCXEYTvjO7vIm79ZyAofFwuT54PcXpyY.&ver=1.0&token" parameters:dic success:^(AFHTTPRequestOperation *operation, NSDictionary *dic) {
+    [manager POST:url parameters:dic success:^(AFHTTPRequestOperation *operation, NSDictionary *dic) {
         NSArray *arrayOfAllContent = [dic objectForKey:@"info"];
         for (NSDictionary *info in arrayOfAllContent) {
             [_arrayOfTextView addObject:[info objectForKey:@"infoLite"]];
@@ -130,6 +134,14 @@
     }];
 }
 
+#pragma mark UITableViewDelegate
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == _arrayOfTitle.count-1) {
+        countI += 1;
+        [self load];
+    }
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
