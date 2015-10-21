@@ -19,7 +19,7 @@
         size = self.bounds.size;
         
         [self addTitleLabel];
-        [self addTextView];
+        [self addContentView];
         [self addYearLabel];
         [self addCompanyLabel];
         [self addImageView];
@@ -38,13 +38,13 @@
     [self.contentView addSubview:_titleLabel];
 }
 
-- (void)addTextView
+- (void)addContentView
 {
-    _textView = [[UITextView alloc] initWithFrame:CGRectMake(20, 40, size.width-70, 45)];
-    _textView.font = [UIFont systemFontOfSize:10];
-    _textView.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.6];
-    _textView.scrollEnabled = NO;
-    [self.contentView addSubview:_textView];
+    _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 40, size.width-70, 45)];
+    _contentLabel.font = [UIFont systemFontOfSize:10];
+    _contentLabel.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.6];
+    _contentLabel.numberOfLines = 3;
+    [self.contentView addSubview:_contentLabel];
 
 }
 

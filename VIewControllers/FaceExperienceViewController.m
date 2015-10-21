@@ -74,7 +74,7 @@
     cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     if (_arrayOfTextView.count) {
-        cell.textView.text = _arrayOfTextView[indexPath.row];
+        cell.contentLabel.text = _arrayOfTextView[indexPath.row];
         cell.titleLabel.text = _arrayOfTitle[indexPath.row];
         cell.yearLabel.text = _arrayOfYear[indexPath.row];
         cell.companyLabel.text = _arrayOfName[indexPath.row];

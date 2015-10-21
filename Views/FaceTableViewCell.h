@@ -10,7 +10,7 @@
 
 @interface FaceTableViewCell : UITableViewCell
 @property (nonatomic,strong,readonly) UILabel *titleLabel;
-@property (nonatomic,strong,readonly) UITextView *textView;
+@property (nonatomic,strong,readonly) UILabel *contentLabel;
 @property (nonatomic,strong,readonly) UILabel *yearLabel;
 @property (nonatomic,strong,readonly) UILabel *companyLabel;
 @property (nonatomic,strong,readonly) UIImageView *imgView;
