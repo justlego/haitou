@@ -43,7 +43,7 @@
     _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 40, size.width-70, 45)];
     _contentLabel.font = [UIFont systemFontOfSize:10];
     _contentLabel.textColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:0.6];
-    _contentLabel.numberOfLines = 3;
+    _contentLabel.numberOfLines = 0;
     [self.contentView addSubview:_contentLabel];
 
 }

@@ -8,6 +8,8 @@
 
 #import "FaceExperienceViewController.h"
 #import "FaceTableViewCell.h"
+#import "FaceDetailsViewController.h"
+
 #import "AFNetworking.h"
 #import "SSARefreshControl.h"
 
@@ -25,6 +27,7 @@
     NSMutableArray *_arrayOfCount;
     NSMutableArray *_arrayOfUp;
     NSMutableArray *_arrayOfImages;
+    NSMutableArray *_arrayOfID;
     
     UITableView *_faceTableView;
     int countI;
@@ -32,6 +35,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"面经分享";
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     countI = 1;
     
@@ -43,6 +48,7 @@
     _arrayOfCount = [NSMutableArray new];
     _arrayOfUp = [NSMutableArray new];
     _arrayOfImages = [NSMutableArray new];
+    _arrayOfID = [NSMutableArray new];
     
     [self addTableView];
     [self addRefresh];
@@ -104,8 +110,9 @@
     NSString *count = [NSString stringWithFormat:@"%d",countI];
     NSString *url = [NSString stringWithFormat:@"http://mobile.haitou.cc/mjfx?type=0&page=%@&auth=ODAS-JgCGzGQCXEYTvjO7vIm79ZyAofFwuT54PcXpyY.&ver=1.0&token",count];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *dic = @{@"foo":@"bar"};
-    [manager POST:url parameters:dic success:^(AFHTTPRequestOperation *operation, NSDictionary *dic) {
+    NSDictionary *dictionary = @{@"foo":@"bar"};
+    [manager POST:url parameters:dictionary success:^(AFHTTPRequestOperation *operation, NSDictionary *dic) {
+//        NSLog(@"dic:%@",dic);
         NSArray *arrayOfAllContent = [dic objectForKey:@"info"];
         for (NSDictionary *info in arrayOfAllContent) {
             [_arrayOfTextView addObject:[info objectForKey:@"infoLite"]];
@@ -114,6 +121,7 @@
             [_arrayOfCount addObject:[info objectForKey:@"count"]];
             [_arrayOfUp addObject:[info objectForKey:@"up"]];
             [_arrayOfImages addObject:[info objectForKey:@"image"]];
+            [_arrayOfID addObject:[[info objectForKey:@"id"] stringValue]];
             
             NSArray *arr = [info objectForKey:@"companys"];
             NSString *name = @"";
@@ -179,6 +187,13 @@
     });
 }
 
+
+#pragma mark UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    FaceDetailsViewController *detailsVC = [[FaceDetailsViewController alloc] init];
+    detailsVC.stringOfID = _arrayOfID[indexPath.row];
+    [self.navigationController pushViewController:detailsVC animated:YES];
+}
 
 
 
